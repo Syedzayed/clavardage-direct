@@ -2,11 +2,13 @@
 
 import { UserButton } from "@clerk/nextjs";
 import { useState } from "react";
+import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
 const links = [
-  { name: "Home", href: "#" },
-  { name: "About", href: "#" },
-  { name: "Services", href: "#" },
+  { name: "Home", href: "/" },
+  { name: "Forums", href: "/forums" },
+  { name: "Chat", href: "/chat" },
 ];
 
 export default function Navbar() {
@@ -21,7 +23,7 @@ export default function Navbar() {
       <div className="container mx-auto flex justify-between items-center flex-wrap">
         {/* Logo/Brand Section */}
         <div className="flex items-center space-x-2">
-          <a href="#" className="flex-shrink-0">
+          <Link href="/" className="flex-shrink-0">
             <svg
               className="h-8 w-8 text-blue-600"
               fill="currentColor"
@@ -30,13 +32,13 @@ export default function Navbar() {
             >
               <path d="M12 2L2 22h20L12 2zm0 17.5L5.5 12h13L12 19.5z" />
             </svg>
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/"
             className="text-xl font-bold text-gray-800 transition-colors duration-300 hover:text-blue-600"
           >
             ClavardageDirect
-          </a>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -81,15 +83,15 @@ export default function Navbar() {
           <ul className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 text-center">
             {links.map((link) => (
               <li key={link.name}>
-                <a
+                <Link
                   href={link.href}
                   className="block px-4 py-2 text-gray-700 font-medium rounded-lg transition-colors duration-300 hover:bg-gray-100 hover:text-blue-600"
                 >
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
-            <li>
+            <li className="flex items-center justify-center">
               <UserButton />
             </li>
           </ul>
